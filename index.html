@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recipe Book Management System</title>
+</head>
+<body>
+    <form method="POST" id="logindata" >
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input id="username" type="text" placeholder="Enter Username" name="username" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input id="password" type="password" placeholder="Enter Password" name="psw" required>
+      
+          <input id="btnLogin" type="submit" name="Login" value="login"></input>
+          <input id="btnRegister" type="submit" name="Register" value="Register">Click to Register</input>     
+        </div>
+     
+      </form> 
+<script src="jquery-3.2.0.js"></script>
+    <script>
+        // const button = document.getElementById("btnLogin");
+        // button.addEventListener('click', function onClick(e){
+        //     const usernameNode = document.getElementById('username');
+        //     const passwordNode = document.getElementById('password');
+        //     const usernameValue = usernameNode.value;
+        //     const passwordValue = passwordNode.value;
+        //     console.log(usernameValue, passwordValue);
+            
+        // })
+
+        $("#logindata").submit(function(e){
+            e.preventDefault();
+                const data ={
+                    username:$("#username").val(),
+                    password:$("#password").val()
+                };
+            
+            console.log(data);
+            $.ajax({
+                url: "http://localhost:3000/login",
+                method:"POST",
+                dataType:"json",
+                contentType:"application/json",
+                data: JSON.stringify(data),
+                success:function(result,status,jqXHR){
+                    console.log("success");
+                },
+                error:function(err,status){
+                    console.log("error")
+                }
+
+            });
+
+
+        });
+
+          
+    </script>
+</body>
+</html>
